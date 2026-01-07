@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slideshow Then Video</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+        }
+
+        .slideshow img {
+            width: 600px;
+            max-width: 90%;
+            text-align-last: center;
+            display: none;
+            border-radius: 10px;
+        }
+
+        video {
+            width: 600px;
+            max-width: 90%;
+            display: none;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+<div class="slideshow">
+    <img class="slide" src="images/5.jpeg">
+    <img class="slide" src="images/4.jpeg">
+    <img class="slide" src="images/3.jpeg">
+    <img class="slide" src="images/2.jpeg">
+    <img class="slide" src="images/1.jpeg">
+    <img class="slide" src="images/love.jpeg">
+</div>
+
+
+
+<script>
+    let slides = document.getElementsByClassName("slide");
+    let video = document.getElementById("myVideo");
+    let index = 0;
+    let slideTime = 3000; // 3 seconds per slide
+
+    function showSlideshow() {
+        if (index > 0) {
+            slides[index - 1].style.display = "none";
+        }
+
+        if (index < slides.length) {
+            slides[index].style.display = "block";
+            index++;
+            setTimeout(showSlideshow, slideTime);
+        } else {
+            // Slideshow finished
+            document.querySelector(".slideshow").style.display = "none";
+            video.style.display = "block";
+            video.play();
+        }
+    }
+
+    showSlideshow();
+</script>
+
+</body>
+</html>
